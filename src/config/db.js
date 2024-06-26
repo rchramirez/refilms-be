@@ -19,17 +19,4 @@ pool.getConnection()
         console.error('Hubo un error al conectarse a la DB:', err);
     });
 
-// Function to execute queries
-async function executeQuery(query, params) {
-    const connection = await pool.getConnection();
-    try {
-        const [rows] = await connection.query(query, params);
-        return rows;
-    } catch (error) {
-        throw error;
-    } finally {
-        connection.release();
-    }
-}
-
 export default pool;
