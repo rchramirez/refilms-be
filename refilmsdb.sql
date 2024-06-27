@@ -24,9 +24,10 @@ CREATE TABLE IF NOT EXISTS `refilmsdb`.`movies` (
   `time` INT NULL,
   `lang` VARCHAR(50) NULL,
   `resume` VARCHAR(150) NULL,
-  `releaseDate` VARCHAR(45) NULL,
+  `release_date` VARCHAR(45) NULL,
   `synopsis` TEXT NULL,
-  `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP(),
+  `image` VARCHAR(45) NULL,
+  `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -36,8 +37,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `refilmsdb`.`actors` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `fname` VARCHAR(20) NULL,
-  `lname` VARCHAR(20) NULL,
+  `first_name` VARCHAR(20) NULL,
+  `last_name` VARCHAR(20) NULL,
   `gender` CHAR(1) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
@@ -47,9 +48,9 @@ ENGINE = InnoDB;
 -- Table `refilmsdb`.`users`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `refilmsdb`.`users` (
-  `id` INT NOT NULL,
-  `fname` VARCHAR(45) NULL,
-  `lname` VARCHAR(45) NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `first_name` VARCHAR(45) NULL,
+  `last_name` VARCHAR(45) NULL,
   `email` VARCHAR(45) NULL,
   `username` VARCHAR(45) NULL,
   `password` VARCHAR(45) NULL,
@@ -207,3 +208,51 @@ ENGINE = InnoDB;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+-- -----------------------------------------------------
+-- Data for table `refilmsdb`.`actors`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `refilmsdb`;
+INSERT INTO `refilmsdb`.`actors` (`id`, `first_name`, `last_name`, `gender`) VALUES (DEFAULT, 'Keanu', 'Reeves', 'M');
+INSERT INTO `refilmsdb`.`actors` (`id`, `first_name`, `last_name`, `gender`) VALUES (DEFAULT, 'Michael', 'Nyqvist', 'M');
+INSERT INTO `refilmsdb`.`actors` (`id`, `first_name`, `last_name`, `gender`) VALUES (DEFAULT, 'Alfie', 'Allen', 'M');
+INSERT INTO `refilmsdb`.`actors` (`id`, `first_name`, `last_name`, `gender`) VALUES (DEFAULT, 'Willem', 'Dafoe', 'M');
+INSERT INTO `refilmsdb`.`actors` (`id`, `first_name`, `last_name`, `gender`) VALUES (DEFAULT, 'Dean', 'Winters', 'M');
+INSERT INTO `refilmsdb`.`actors` (`id`, `first_name`, `last_name`, `gender`) VALUES (DEFAULT, 'Adrianne', 'Palicki', 'F');
+INSERT INTO `refilmsdb`.`actors` (`id`, `first_name`, `last_name`, `gender`) VALUES (DEFAULT, 'Omer', 'Barnea', 'M');
+INSERT INTO `refilmsdb`.`actors` (`id`, `first_name`, `last_name`, `gender`) VALUES (DEFAULT, 'John', 'Leguizamo', 'M');
+INSERT INTO `refilmsdb`.`actors` (`id`, `first_name`, `last_name`, `gender`) VALUES (DEFAULT, 'Bridget', 'Moynahan', 'F');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `refilmsdb`.`directors`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `refilmsdb`;
+INSERT INTO `refilmsdb`.`directors` (`id`, `fname`, `lname`) VALUES (DEFAULT, 'David', 'Leitch');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `refilmsdb`.`genres`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `refilmsdb`;
+INSERT INTO `refilmsdb`.`genres` (`id`, `title`) VALUES (DEFAULT, 'Acción');
+INSERT INTO `refilmsdb`.`genres` (`id`, `title`) VALUES (DEFAULT, 'Aventura');
+INSERT INTO `refilmsdb`.`genres` (`id`, `title`) VALUES (DEFAULT, 'Catástrofe');
+INSERT INTO `refilmsdb`.`genres` (`id`, `title`) VALUES (DEFAULT, 'Ciencia Ficción');
+INSERT INTO `refilmsdb`.`genres` (`id`, `title`) VALUES (DEFAULT, 'Comedia');
+INSERT INTO `refilmsdb`.`genres` (`id`, `title`) VALUES (DEFAULT, 'Documentales');
+INSERT INTO `refilmsdb`.`genres` (`id`, `title`) VALUES (DEFAULT, 'Drama');
+INSERT INTO `refilmsdb`.`genres` (`id`, `title`) VALUES (DEFAULT, 'Fantasía');
+INSERT INTO `refilmsdb`.`genres` (`id`, `title`) VALUES (DEFAULT, 'Musicales');
+INSERT INTO `refilmsdb`.`genres` (`id`, `title`) VALUES (DEFAULT, 'Suspense');
+INSERT INTO `refilmsdb`.`genres` (`id`, `title`) VALUES (DEFAULT, 'Terror');
+
+COMMIT;
+
