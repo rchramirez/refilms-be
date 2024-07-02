@@ -13,18 +13,8 @@ class Server {
 
         this.middlewares();
         this.routes();
-        this.databaseConnection();
     }
-
-    async databaseConnection() {
-        try {
-            await pool.getConnection();
-            console.log('Conectado a la base de datos MySQL');
-        } catch (error) {
-            console.error('Error de conexión a MySQL:', error);
-        }
-    }
-
+    
     middlewares() {
         this.app.use(express.json());
         this.app.use(express.urlencoded({ extended: true }));
