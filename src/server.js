@@ -1,9 +1,9 @@
 import express from 'express';
-import pool from './src/config/db.js';
+import pool from './config/db.js';
 import 'dotenv/config';
 
-import routesActors from './src/routes/actors.js'
-import routesMovies from './src/routes/movies.js'
+import routesActors from './routes/actors.js'
+import routesMovies from './routes/movies.js'
 
 class Server {
 
