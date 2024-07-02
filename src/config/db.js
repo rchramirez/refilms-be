@@ -1,14 +1,14 @@
 import { createPool } from 'mysql2/promise';
+import 'dotenv/config';
 
-// Create a connection pool
 const pool = createPool({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'refilmsdb',
-    waitForConnections: true,
-    connectionLimit: 10
-})
+    host: process.env.MYSQL_ADDON_HOST,
+    user: process.env.MYSQL_ADDON_USER,
+    password: process.env.MYSQL_ADDON_PASSWORD,
+    database: process.env.MYSQL_ADDON_DB,
+    port:process.env.MYSQL_ADDON_PORT,
+    connectionLimit: 5
+});
 
 pool.getConnection()
     .then(connection => {
@@ -16,7 +16,7 @@ pool.getConnection()
         console.log('Database connected!');
     })
     .catch(err => {
-        console.error('Hubo un error al conectarse a la DB:', err);
+        console.error('Error connecting to the database', err);
     });
 
 export default pool;

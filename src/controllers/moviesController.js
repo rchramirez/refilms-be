@@ -1,6 +1,6 @@
 class MoviesController {
 
-    async getAllMovies(req, res) {
+    static async getAllMovies(req, res) {
         try {
             const [rows] = await req.pool.query('SELECT * FROM movies');
             res.json(rows);
@@ -9,7 +9,7 @@ class MoviesController {
         }
     }
 
-    async createMovie(req, res) {
+    static async createMovie(req, res) {
         const { title, genre, releaseDate, director, synopsis } = req.body;
 
         try {
@@ -34,4 +34,4 @@ class MoviesController {
     }
 }
 
-module.exports = new moviesController();
+export default MoviesController;

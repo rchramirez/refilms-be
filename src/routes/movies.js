@@ -1,11 +1,11 @@
 import Router from 'express';
-import Movie from '../controllers/MoviesController';
+import Movies from '../controllers/moviesController.js';
 
 const router = Router();
 
 router
     .route('/')
-    .get(Movie.getAllMovies.bind(Movie))
-    .post(Movie.createMovie.bind(Movie));
+    .get(Movies.getAllMovies)
+    .post(Movies.createMovie);
 
-module.exports = router;
+export default router;
