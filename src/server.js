@@ -30,11 +30,11 @@ class Server {
     }
 
     routes() {
-        this.app.use('/refilms/actors', routesActors);
-        this.app.use('/refilms/movies', routesMovies);
-        this.app.use('/refilms/directors', routesDirectors);
-        this.app.use('/refilms/users', routesUsers);
-        this.app.use('/refilms/genres', routesGenres);
+        this.app.use('/actors', routesActors);
+        this.app.use('/movies', routesMovies);
+        this.app.use('/directors', routesDirectors);
+        this.app.use('/users', routesUsers);
+        this.app.use('/genres', routesGenres);
     }
 
     listen() {
