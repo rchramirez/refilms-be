@@ -8,4 +8,10 @@ router
     .get(Movies.getAllMovies)
     .post(Movies.createMovie);
 
+router
+    .route('/:id')
+    .get(Movies.getMovie)
+    .delete(Movies.deleteMovie)
+    .put(Movies.updateMovie);
+
 export default router;

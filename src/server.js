@@ -2,8 +2,11 @@ import express from 'express';
 import pool from './config/db.js';
 import 'dotenv/config';
 
-import routesActors from './routes/actors.js'
-import routesMovies from './routes/movies.js'
+import routesActors from './routes/actors.js';
+import routesMovies from './routes/movies.js';
+import routesDirectors from './routes/directors.js';
+import routesUsers from './routes/users.js';
+import routesGenres from './routes/genres.js';
 
 class Server {
 
@@ -14,7 +17,7 @@ class Server {
         this.middlewares();
         this.routes();
     }
-    
+
     middlewares() {
         this.app.use(express.json());
         this.app.use(express.urlencoded({ extended: true }));
@@ -29,6 +32,9 @@ class Server {
     routes() {
         this.app.use('/refilms/actors', routesActors);
         this.app.use('/refilms/movies', routesMovies);
+        this.app.use('/refilms/directors', routesDirectors);
+        this.app.use('/refilms/users', routesUsers);
+        this.app.use('/refilms/genres', routesGenres);
     }
 
     listen() {
