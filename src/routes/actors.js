@@ -7,12 +7,12 @@ const router = Router();
 router
     .route("/")
     .get(checkAuth, Actors.getAllActors)
-    .post(Actors.createActor);
+    .post(checkAuth, Actors.createActor);
 
 router
     .route('/:id')
-    .get(Actors.getActor)
-    .delete(Actors.deleteActor)
-    .put(Actors.updateActor);
+    .get(checkAuth, Actors.getActor)
+    .delete(checkAuth, Actors.deleteActor)
+    .put(checkAuth, Actors.updateActor);
 
 export default router;

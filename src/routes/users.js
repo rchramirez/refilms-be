@@ -11,9 +11,9 @@ router
 
 router
     .route('/:id')
-    .get(Users.getUser)
-    .delete(Users.deleteUser)
-    .put(Users.updateUser);
+    .get(checkAuth, Users.getUser)
+    .delete(checkAuth, Users.deleteUser)
+    .put(checkAuth, Users.updateUser);
 
 router.post('/login', Users.authenticate);
 

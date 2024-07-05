@@ -1,17 +1,18 @@
 import Router from 'express';
 import Movies from '../controllers/moviesController.js';
+import checkAuth from "../middleware/checkAuth.js";
 
 const router = Router();
 
 router
     .route('/')
-    .get(Movies.getAllMovies)
-    .post(Movies.createMovie);
+    .get(checkAuth, Movies.getAllMovies)
+    .post(checkAuth, Movies.createMovie);
 
 router
     .route('/:id')
-    .get(Movies.getMovie)
-    .delete(Movies.deleteMovie)
-    .put(Movies.updateMovie);
+    .get(checkAuth, Movies.getMovie)
+    .delete(checkAuth, Movies.deleteMovie)
+    .put(checkAuth, Movies.updateMovie);
 
 export default router;

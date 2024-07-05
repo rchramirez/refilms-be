@@ -1,17 +1,18 @@
 import Router from 'express';
 import Reviewers from '../controllers/reviewersController.js'
+import checkAuth from "../middleware/checkAuth.js";
 
 const router = Router();
 
 router
     .route('/')
-    .get(Reviewers.getAllReviewers)
-    .post(Reviewers.createReviewer);
+    .get(checkAuth, Reviewers.getAllReviewers)
+    .post(checkAuth, Reviewers.createReviewer);
 
 router
     .route('/:id')
-    .get(Reviewers.getReviewer)
-    .delete(Reviewers.deleteReviewer)
-    .put(Reviewers.updateReviewer);
+    .get(checkAuth, Reviewers.getReviewer)
+    .delete(checkAuth, Reviewers.deleteReviewer)
+    .put(checkAuth, Reviewers.updateReviewer);
 
 export default router;
