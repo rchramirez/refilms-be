@@ -1,25 +1,32 @@
 import jwt from 'jsonwebtoken';
 import 'dotenv/config';
+import validator from 'validator';
 
 const checkAuth = async (req, res, next) => {
     const headerToken = req.headers['authorization']
-    console.log(headerToken);
-
-    if (headerToken != undefined && headerToken.startsWith('Bearer')) {
-        try {
-            const bearerToken = headerToken.slice(7);
-            const decoded = jwt.verify(bearerToken, process.env.SECRET_KEY || 'mysecretkey');
-            const [rows] = await req.pool.query('SELECT * FROM users WHERE id = ?', decoded.id);
-            req.body.user = rows[0];
-            next();
-        } catch (error) {
-            res.status(401).json({
-                msg: 'Token invalid!'
+    if (!headerToken) {
+        res.status(401).json({
+            message: 'No token provided'
+        });
+    }
+    const bearerToken = headerToken.slice(7);
+    if (!validator.isJWT(bearerToken)) {
+        res.status(401).json({
+            message: 'Invalid token format'
+        });
+    }
+    try {
+        const decoded = jwt.verify(bearerToken, process.env.SECRET_KEY || 'mysecretkey');
+        const [rows] = await req.pool.query('SELECT * FROM users WHERE id = ?', decoded.id);
+        if (!rows) {
+            res.status(400).json({
+                message: 'User not exist'
             });
         }
-    } else {
+        next();
+    } catch (error) {
         res.status(401).json({
-            msg: 'Access denied!'
+            message: 'Token invalid!'
         });
     }
 }

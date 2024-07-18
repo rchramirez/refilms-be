@@ -54,8 +54,10 @@ class UsersController {
         const id = req.params.id;
         const user = req.body;
         user.id = id;
-
+        console.log("user -> ", user);
         try {
+            user.password = await bcrypt.hash(user.password, 10);
+            console.log("password -> ", user.password);
             await req.pool.query('UPDATE users SET ? WHERE id = ?', [user, id]);
             res.json({
                 message: 'User updated successfully',
